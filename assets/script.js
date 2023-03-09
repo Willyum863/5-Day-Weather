@@ -1,4 +1,4 @@
-//var APIKey = "cc850b600769614bab6239ca5af338ce";
+var APIKey = "cc850b600769614bab6239ca5af338ce";
 //var city;
 //var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 //fetch(queryURL)
@@ -23,11 +23,18 @@ function renderWeather(weather) {
     wind.textContent = "Wind: " + weather.wind.speed + " mph";
     resultsContainer.append(wind);
 
+    var citySearch = document.querySelector("button");
+    citySearch.addEventListener("click", function() {
+        var city = city.value;
+        weatherData(city);
+        searchHistory(city);
+        city.value = "";
+    })
     
 }
 
-function fetchWeather(query) {
-    var url = "https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=cc850b600769614bab6239ca5af338ce"
+function fetchWeather(city) {
+    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     fetch(url)
     .then((response) => response.json())
     .then((data) => renderWeather(data));
