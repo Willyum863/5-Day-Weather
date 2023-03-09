@@ -31,6 +31,7 @@ var citySearch = document.querySelector("button");
     citySearch.addEventListener("click", function() {
         var cityName = city.value;
         getWeather(cityName);
+        //searchHistory(cityName);
         city.value = "";
     })
 
